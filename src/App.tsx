@@ -27,9 +27,14 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between h-16">
             <div className="flex items-center">
-              <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                CloudBooks
-              </span>
+              <div className="flex flex-col justify-center">
+                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-none">
+                  Zanya
+                </span>
+                <span className="text-[10px] text-slate-500 font-medium tracking-wider mt-1 uppercase">
+                  "Z" stands for Services, Standards, Security
+                </span>
+              </div>
             </div>
             
             {/* Desktop Navigation */}

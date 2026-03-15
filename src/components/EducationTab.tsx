@@ -264,7 +264,7 @@ export default function EducationTab() {
               </div>
               <div>
                 <p className="text-sm text-blue-200 uppercase tracking-wider">Email</p>
-                <p className="text-lg font-medium">Cloudbooksit@gmail.com</p>
+                <p className="text-lg font-medium">Zanyait@gmail.com</p>
               </div>
             </div>
             
