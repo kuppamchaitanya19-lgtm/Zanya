@@ -79,12 +79,124 @@ function HotelDemoDashboard({ featureId }: { featureId: string }) {
     );
   }
 
+  if (featureId === 'booking') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Occupancy Rate</p>
+            <p className="text-3xl font-bold text-blue-600">85%</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">New Bookings (Today)</p>
+            <p className="text-3xl font-bold text-emerald-600">24</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">RevPAR</p>
+            <p className="text-3xl font-bold text-slate-800">$142.50</p>
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+            <h4 className="font-bold text-slate-800">Recent Reservations</h4>
+            <button className="text-sm bg-blue-600 text-white px-3 py-1.5 rounded-lg font-medium">Add Booking</button>
+          </div>
+          <div className="p-4 space-y-4">
+            {[
+              { id: 'RES-9021', name: 'Dwight Schrute', dates: 'Oct 12 - Oct 15', type: 'Suite', source: 'Direct' },
+              { id: 'RES-9022', name: 'Angela Martin', dates: 'Oct 14 - Oct 16', type: 'Standard', source: 'Booking.com' },
+              { id: 'RES-9023', name: 'Stanley Hudson', dates: 'Oct 18 - Oct 22', type: 'Deluxe', source: 'Expedia' },
+            ].map((res, i) => (
+              <div key={i} className="flex items-center justify-between p-4 rounded-xl border border-slate-100 hover:border-blue-200 transition-colors">
+                <div>
+                  <div className="flex items-center space-x-2">
+                    <p className="font-bold text-slate-800">{res.name}</p>
+                    <span className="text-xs font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">{res.id}</span>
+                  </div>
+                  <p className="text-sm text-slate-500 mt-1">{res.dates} • {res.type}</p>
+                </div>
+                <div className="text-right">
+                  <span className="inline-block px-3 py-1 bg-blue-50 text-blue-700 text-xs font-bold rounded-full">{res.source}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'staff') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h4 className="text-xl font-bold text-slate-800">Today's Shifts</h4>
+          <button className="px-4 py-2 bg-purple-600 text-white rounded-lg text-sm font-bold shadow-sm">Manage Schedule</button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { name: 'Sarah Jenkins', role: 'Front Desk', shift: '07:00 AM - 03:00 PM', status: 'On Duty', color: 'bg-emerald-100 text-emerald-700' },
+            { name: 'Michael Chen', role: 'Housekeeping', shift: '08:00 AM - 04:00 PM', status: 'On Duty', color: 'bg-emerald-100 text-emerald-700' },
+            { name: 'Elena Rodriguez', role: 'Concierge', shift: '03:00 PM - 11:00 PM', status: 'Upcoming', color: 'bg-blue-100 text-blue-700' },
+            { name: 'David Kim', role: 'Maintenance', shift: '11:00 PM - 07:00 AM', status: 'Night Shift', color: 'bg-purple-100 text-purple-700' },
+          ].map((staff, i) => (
+            <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-full bg-slate-200 overflow-hidden shrink-0">
+                <img src={`https://picsum.photos/seed/${staff.name.replace(' ', '')}/100/100`} alt={staff.name} className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+              </div>
+              <div className="flex-1">
+                <h5 className="font-bold text-slate-800">{staff.name}</h5>
+                <p className="text-sm text-slate-500">{staff.role}</p>
+                <p className="text-xs text-slate-400 mt-1">{staff.shift}</p>
+              </div>
+              <span className={`px-3 py-1 rounded-full text-xs font-bold ${staff.color}`}>
+                {staff.status}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'inventory') {
+    return (
+      <div className="space-y-6">
+        <div className="flex space-x-4 mb-6">
+          <div className="flex items-center space-x-2"><div className="w-3 h-3 rounded-full bg-emerald-500"></div><span className="text-sm text-slate-600">Clean & Ready</span></div>
+          <div className="flex items-center space-x-2"><div className="w-3 h-3 rounded-full bg-amber-500"></div><span className="text-sm text-slate-600">Dirty</span></div>
+          <div className="flex items-center space-x-2"><div className="w-3 h-3 rounded-full bg-blue-500"></div><span className="text-sm text-slate-600">Occupied</span></div>
+          <div className="flex items-center space-x-2"><div className="w-3 h-3 rounded-full bg-red-500"></div><span className="text-sm text-slate-600">Out of Order</span></div>
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          {[
+            { room: '101', type: 'STD', status: 'clean', color: 'border-emerald-500 bg-emerald-50 text-emerald-700' },
+            { room: '102', type: 'STD', status: 'occupied', color: 'border-blue-500 bg-blue-50 text-blue-700' },
+            { room: '103', type: 'DLX', status: 'dirty', color: 'border-amber-500 bg-amber-50 text-amber-700' },
+            { room: '104', type: 'DLX', status: 'clean', color: 'border-emerald-500 bg-emerald-50 text-emerald-700' },
+            { room: '105', type: 'STE', status: 'ooo', color: 'border-red-500 bg-red-50 text-red-700' },
+            { room: '201', type: 'STD', status: 'occupied', color: 'border-blue-500 bg-blue-50 text-blue-700' },
+            { room: '202', type: 'STD', status: 'occupied', color: 'border-blue-500 bg-blue-50 text-blue-700' },
+            { room: '203', type: 'DLX', status: 'clean', color: 'border-emerald-500 bg-emerald-50 text-emerald-700' },
+            { room: '204', type: 'DLX', status: 'dirty', color: 'border-amber-500 bg-amber-50 text-amber-700' },
+            { room: '205', type: 'STE', status: 'clean', color: 'border-emerald-500 bg-emerald-50 text-emerald-700' },
+          ].map((room, i) => (
+            <div key={i} className={`p-4 rounded-xl border-2 flex flex-col items-center justify-center ${room.color}`}>
+              <span className="text-xl font-bold">{room.room}</span>
+              <span className="text-xs font-medium uppercase mt-1 opacity-80">{room.type}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <BarChart3 className="w-16 h-16 text-slate-300 mb-4" />
-      <h4 className="text-2xl font-bold text-slate-800 mb-2">Dashboard View</h4>
+      <Activity className="w-16 h-16 text-slate-300 mb-4" />
+      <h4 className="text-2xl font-bold text-slate-800 mb-2">{featureId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} Dashboard</h4>
       <p className="text-slate-500 max-w-md">
-        This is a simulated dashboard view for this module. In the live application, this area contains real-time charts, data tables, and management controls.
+        This is a simulated dashboard view for this module. In the live application, this area contains real-time charts, data tables, and management controls specific to this feature.
       </p>
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
         {[1, 2, 3].map(i => (

@@ -25,33 +25,37 @@ export default function App() {
       {/* Navbar */}
       <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between h-16">
-            <div className="flex items-center">
+          <div className="flex justify-between h-20">
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 via-indigo-600 to-purple-600 flex items-center justify-center shadow-lg transform -rotate-6">
+                <span className="text-white font-extrabold text-3xl italic">Z</span>
+              </div>
               <div className="flex flex-col justify-center">
-                <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent leading-none">
-                  Zanya
+                <span className="text-4xl font-extrabold bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 bg-clip-text text-transparent leading-none tracking-tight">
+                  ZANYA
                 </span>
-                <span className="text-[10px] text-slate-500 font-medium tracking-wider mt-1 uppercase">
+                <span className="text-xs text-slate-700 font-bold tracking-widest mt-1 uppercase">
                   "Z" stands for Services, Standards, Security
                 </span>
               </div>
             </div>
             
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
+            <div className="hidden md:flex items-center space-x-4">
               {tabs.map((tab) => {
                 const Icon = tab.icon;
+                const isActive = activeTab === tab.id;
                 return (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center space-x-2 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                      activeTab === tab.id
-                        ? 'text-blue-600 bg-blue-50'
-                        : 'text-slate-600 hover:text-blue-600 hover:bg-slate-50'
+                    className={`flex items-center space-x-2 px-5 py-2.5 rounded-full text-sm font-bold transition-all duration-200 shadow-sm ${
+                      isActive
+                        ? 'bg-gradient-to-r from-blue-600 to-indigo-600 text-white shadow-md transform scale-105'
+                        : 'bg-white text-slate-600 hover:bg-slate-50 hover:text-blue-600 border border-slate-200'
                     }`}
                   >
-                    <Icon className="w-4 h-4" />
+                    <Icon className={`w-4 h-4 ${isActive ? 'text-white' : 'text-slate-500'}`} />
                     <span>{tab.label}</span>
                   </button>
                 );

@@ -62,6 +62,214 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
     );
   }
 
+  if (featureId === 'salon-booking') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Today\'s Appointments', value: '24', icon: CalendarClock, color: 'text-rose-600', bg: 'bg-rose-100' },
+            { label: 'Pending Requests', value: '5', icon: CalendarDays, color: 'text-orange-600', bg: 'bg-orange-100' },
+            { label: 'Active Stylists', value: '8', icon: Users, color: 'text-blue-600', bg: 'bg-blue-100' },
+            { label: 'Revenue Today', value: '$1,240', icon: Activity, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
+              <div className={`p-3 rounded-xl ${stat.bg}`}>
+                <stat.icon className={`w-6 h-6 ${stat.color}`} />
+              </div>
+              <div>
+                <p className="text-sm text-slate-500 font-medium">{stat.label}</p>
+                <p className="text-2xl font-bold text-slate-800">{stat.value}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+            <h3 className="text-lg font-bold text-slate-800">Upcoming Appointments</h3>
+            <button className="text-sm font-medium text-rose-600 hover:text-rose-700">View Calendar</button>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-500 text-sm">
+                  <th className="p-4 font-medium">Time</th>
+                  <th className="p-4 font-medium">Client</th>
+                  <th className="p-4 font-medium">Service</th>
+                  <th className="p-4 font-medium">Stylist</th>
+                  <th className="p-4 font-medium">Status</th>
+                  <th className="p-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { time: '10:00 AM', client: 'Jessica Alba', service: 'Premium Hair Styling', stylist: 'Emma', status: 'Confirmed', statusColor: 'bg-emerald-100 text-emerald-700' },
+                  { time: '11:30 AM', client: 'Michael Smith', service: 'Men\'s Grooming', stylist: 'David', status: 'Pending', statusColor: 'bg-orange-100 text-orange-700' },
+                  { time: '01:00 PM', client: 'Sarah Connor', service: 'Luxury Spa Treatment', stylist: 'Sarah', status: 'Confirmed', statusColor: 'bg-emerald-100 text-emerald-700' },
+                  { time: '02:30 PM', client: 'Emily Blunt', service: 'Bridal Makeup', stylist: 'Emma', status: 'In Progress', statusColor: 'bg-blue-100 text-blue-700' },
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-slate-800 font-medium">{row.time}</td>
+                    <td className="p-4 text-slate-600">{row.client}</td>
+                    <td className="p-4 text-slate-600">{row.service}</td>
+                    <td className="p-4 text-slate-600">{row.stylist}</td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${row.statusColor}`}>
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      <button className="text-slate-400 hover:text-rose-600 transition-colors">Manage</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'staff-mgmt') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div>
+            <h3 className="text-lg font-bold text-slate-800">Staff Management</h3>
+            <p className="text-sm text-slate-500">Manage your team of stylists and professionals.</p>
+          </div>
+          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg font-medium hover:bg-indigo-700 transition-colors flex items-center space-x-2">
+            <Users className="w-4 h-4" />
+            <span>Add Staff Member</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { name: 'Emma Thompson', role: 'Master Stylist', rating: '4.9', clients: 124, img: 'https://picsum.photos/seed/emma/150/150' },
+            { name: 'David Chen', role: 'Color Specialist', rating: '4.8', clients: 98, img: 'https://picsum.photos/seed/david/150/150' },
+            { name: 'Sarah Jenkins', role: 'Nail Technician', rating: '4.7', clients: 156, img: 'https://picsum.photos/seed/sarah/150/150' },
+          ].map((staff, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
+              <img src={staff.img} alt={staff.name} className="w-24 h-24 rounded-full mb-4 border-4 border-indigo-50" referrerPolicy="no-referrer" />
+              <h4 className="text-lg font-bold text-slate-800">{staff.name}</h4>
+              <p className="text-sm text-indigo-600 font-medium mb-4">{staff.role}</p>
+              
+              <div className="w-full grid grid-cols-2 gap-4 border-t border-slate-100 pt-4 mt-auto">
+                <div>
+                  <p className="text-xs text-slate-500 mb-1">Rating</p>
+                  <p className="font-bold text-slate-800 flex items-center justify-center">
+                    <span className="text-yellow-400 mr-1">★</span> {staff.rating}
+                  </p>
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 mb-1">Clients/mo</p>
+                  <p className="font-bold text-slate-800">{staff.clients}</p>
+                </div>
+              </div>
+              <button className="w-full mt-4 py-2 border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:bg-slate-50 transition-colors">
+                View Profile
+              </button>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'inventory') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Total Products</p>
+              <p className="text-3xl font-bold text-slate-800">452</p>
+            </div>
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+              <Package className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Low Stock Alerts</p>
+              <p className="text-3xl font-bold text-rose-600">12</p>
+            </div>
+            <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center">
+              <Activity className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Retail Value</p>
+              <p className="text-3xl font-bold text-slate-800">$14,500</p>
+            </div>
+            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+              <BarChart3 className="w-6 h-6" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+            <h3 className="text-lg font-bold text-slate-800">Inventory Status</h3>
+            <div className="flex space-x-2">
+              <input type="text" placeholder="Search products..." className="px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+              <button className="px-4 py-2 bg-emerald-600 text-white rounded-lg text-sm font-medium hover:bg-emerald-700 transition-colors">
+                Add Stock
+              </button>
+            </div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-500 text-sm">
+                  <th className="p-4 font-medium">Product Name</th>
+                  <th className="p-4 font-medium">Category</th>
+                  <th className="p-4 font-medium">Stock Level</th>
+                  <th className="p-4 font-medium">Status</th>
+                  <th className="p-4 font-medium">Price</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Argan Oil Hair Serum', category: 'Hair Care', stock: 45, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$24.00' },
+                  { name: 'Color Protect Shampoo', category: 'Hair Care', stock: 8, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$18.50' },
+                  { name: 'Hydrating Face Mask', category: 'Skincare', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$32.00' },
+                  { name: 'Professional Hair Spray', category: 'Styling', stock: 120, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$15.00' },
+                  { name: 'Gel Nail Polish Set', category: 'Nail Care', stock: 15, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$45.00' },
+                ].map((item, i) => (
+                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-slate-800 font-medium">{item.name}</td>
+                    <td className="p-4 text-slate-600">{item.category}</td>
+                    <td className="p-4">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-full bg-slate-200 rounded-full h-2 max-w-[100px]">
+                          <div 
+                            className={`h-2 rounded-full ${item.stock > 20 ? 'bg-emerald-500' : item.stock > 0 ? 'bg-orange-500' : 'bg-rose-500'}`} 
+                            style={{ width: `${Math.min(100, (item.stock / 50) * 100)}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-sm text-slate-600">{item.stock}</span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${item.statusColor}`}>
+                        {item.status}
+                      </span>
+                    </td>
+                    <td className="p-4 text-slate-800 font-medium">{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
       <BarChart3 className="w-16 h-16 text-slate-300 mb-4" />

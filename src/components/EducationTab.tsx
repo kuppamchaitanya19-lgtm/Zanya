@@ -101,12 +101,260 @@ function DemoDashboard({ featureId }: { featureId: string }) {
     );
   }
 
+  if (featureId === 'gate-attendance') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Total Entries Today</p>
+            <p className="text-3xl font-bold text-slate-800">1,245</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Active on Campus</p>
+            <p className="text-3xl font-bold text-emerald-600">1,180</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Alerts Triggered</p>
+            <p className="text-3xl font-bold text-amber-500">12</p>
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+            <h4 className="font-bold text-slate-800">Live Gate Feed (Main Entrance)</h4>
+            <span className="flex h-3 w-3 relative">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
+            </span>
+          </div>
+          <div className="p-4 space-y-4">
+            {[
+              { name: 'John Doe', type: 'Student', time: 'Just now', action: 'Entry', color: 'text-emerald-600 bg-emerald-50' },
+              { name: 'Sarah Smith', type: 'Staff', time: '2 mins ago', action: 'Entry', color: 'text-emerald-600 bg-emerald-50' },
+              { name: 'Mike Johnson', type: 'Student', time: '5 mins ago', action: 'Exit', color: 'text-amber-600 bg-amber-50' },
+            ].map((log, i) => (
+              <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-slate-100">
+                <div className="flex items-center space-x-4">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${log.color}`}>
+                    {log.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p className="font-bold text-slate-800">{log.name}</p>
+                    <p className="text-xs text-slate-500">{log.type}</p>
+                  </div>
+                </div>
+                <div className="text-right">
+                  <p className={`font-bold text-sm ${log.action === 'Entry' ? 'text-emerald-600' : 'text-amber-600'}`}>{log.action}</p>
+                  <p className="text-xs text-slate-500">{log.time}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'appointment') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center">
+          <h4 className="text-xl font-bold text-slate-800">Upcoming Appointments</h4>
+          <button className="px-4 py-2 bg-indigo-600 text-white rounded-lg text-sm font-bold shadow-sm">New Appointment</button>
+        </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          {[
+            { with: 'Mr. Anderson (Parent)', purpose: 'Academic Review', time: '10:00 AM - 10:30 AM', date: 'Today' },
+            { with: 'Mrs. Davis (Parent)', purpose: 'Behavioral Discussion', time: '11:00 AM - 11:45 AM', date: 'Today' },
+            { with: 'Vendor Meeting', purpose: 'New Lab Equipment', time: '02:00 PM - 03:00 PM', date: 'Tomorrow' },
+            { with: 'Staff Meeting', purpose: 'Curriculum Planning', time: '04:00 PM - 05:00 PM', date: 'Tomorrow' },
+          ].map((apt, i) => (
+            <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col">
+              <div className="flex justify-between items-start mb-4">
+                <div>
+                  <h5 className="font-bold text-slate-800">{apt.with}</h5>
+                  <p className="text-sm text-slate-500">{apt.purpose}</p>
+                </div>
+                <span className="px-2 py-1 bg-indigo-50 text-indigo-700 text-xs font-bold rounded-md">{apt.date}</span>
+              </div>
+              <div className="mt-auto flex items-center text-slate-600 text-sm font-medium">
+                <Calendar className="w-4 h-4 mr-2" />
+                {apt.time}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'visitor') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Active Visitors</p>
+            <p className="text-3xl font-bold text-purple-600">14</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Pre-approved</p>
+            <p className="text-3xl font-bold text-slate-800">5</p>
+          </div>
+          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+            <p className="text-slate-500 text-sm font-medium">Total Today</p>
+            <p className="text-3xl font-bold text-slate-800">42</p>
+          </div>
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+            <h4 className="font-bold text-slate-800">Visitor Log</h4>
+            <button className="text-sm bg-purple-600 text-white px-3 py-1.5 rounded-lg font-medium">Register Visitor</button>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-slate-50 text-slate-500 text-sm">
+                <tr>
+                  <th className="p-4 font-medium">Visitor Name</th>
+                  <th className="p-4 font-medium">Purpose</th>
+                  <th className="p-4 font-medium">Host</th>
+                  <th className="p-4 font-medium">Check-In</th>
+                  <th className="p-4 font-medium">Status</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Robert Fox', purpose: 'Meeting', host: 'Principal', time: '09:30 AM', status: 'Active', color: 'bg-emerald-100 text-emerald-700' },
+                  { name: 'Wade Warren', purpose: 'Delivery', host: 'Office', time: '10:15 AM', status: 'Checked Out', color: 'bg-slate-100 text-slate-700' },
+                  { name: 'Esther Howard', purpose: 'Admission Inquiry', host: 'Admin', time: '11:00 AM', status: 'Active', color: 'bg-emerald-100 text-emerald-700' },
+                ].map((visitor, i) => (
+                  <tr key={i} className="hover:bg-slate-50">
+                    <td className="p-4 font-medium text-slate-800">{visitor.name}</td>
+                    <td className="p-4 text-slate-600">{visitor.purpose}</td>
+                    <td className="p-4 text-slate-600">{visitor.host}</td>
+                    <td className="p-4 text-slate-500 text-sm">{visitor.time}</td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${visitor.color}`}>
+                        {visitor.status}
+                      </span>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'admission') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          {[
+            { label: 'Total Applications', value: '450', color: 'text-blue-600', bg: 'bg-blue-100' },
+            { label: 'Under Review', value: '120', color: 'text-amber-600', bg: 'bg-amber-100' },
+            { label: 'Approved', value: '280', color: 'text-emerald-600', bg: 'bg-emerald-100' },
+            { label: 'Rejected', value: '50', color: 'text-rose-600', bg: 'bg-rose-100' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
+              <p className="text-slate-500 text-sm font-medium">{stat.label}</p>
+              <p className={`text-3xl font-bold ${stat.color}`}>{stat.value}</p>
+            </div>
+          ))}
+        </div>
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
+            <h4 className="font-bold text-slate-800">Recent Applications</h4>
+            <button className="text-sm text-emerald-600 font-medium hover:text-emerald-700">View All</button>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left">
+              <thead className="bg-slate-50 text-slate-500 text-sm">
+                <tr>
+                  <th className="p-4 font-medium">Applicant Name</th>
+                  <th className="p-4 font-medium">Grade Applied</th>
+                  <th className="p-4 font-medium">Date Submitted</th>
+                  <th className="p-4 font-medium">Status</th>
+                  <th className="p-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Michael Scott', grade: 'Grade 5', date: 'Oct 24, 2023', status: 'Under Review', color: 'bg-amber-100 text-amber-700' },
+                  { name: 'Jim Halpert', grade: 'Grade 8', date: 'Oct 23, 2023', status: 'Approved', color: 'bg-emerald-100 text-emerald-700' },
+                  { name: 'Pam Beesly', grade: 'Grade 1', date: 'Oct 22, 2023', status: 'Pending Docs', color: 'bg-blue-100 text-blue-700' },
+                ].map((app, i) => (
+                  <tr key={i} className="hover:bg-slate-50">
+                    <td className="p-4 font-medium text-slate-800">{app.name}</td>
+                    <td className="p-4 text-slate-600">{app.grade}</td>
+                    <td className="p-4 text-slate-500 text-sm">{app.date}</td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${app.color}`}>
+                        {app.status}
+                      </span>
+                    </td>
+                    <td className="p-4">
+                      <button className="text-slate-400 hover:text-emerald-600 transition-colors">Review</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'exam') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div>
+            <h3 className="text-lg font-bold text-slate-800">Mid-Term Examination Results</h3>
+            <p className="text-sm text-slate-500">Class 10 - Section A</p>
+          </div>
+          <button className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center space-x-2">
+            <FileText className="w-4 h-4" />
+            <span>Publish Results</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { subject: 'Mathematics', avg: '82%', highest: '98%', lowest: '45%' },
+            { subject: 'Science', avg: '78%', highest: '95%', lowest: '52%' },
+            { subject: 'English', avg: '85%', highest: '99%', lowest: '60%' },
+          ].map((stat, i) => (
+            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+              <h4 className="text-lg font-bold text-slate-800 mb-4">{stat.subject}</h4>
+              <div className="space-y-3">
+                <div className="flex justify-between items-center">
+                  <span className="text-sm text-slate-500">Class Average</span>
+                  <span className="font-bold text-slate-800">{stat.avg}</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-2">
+                  <div className="bg-green-500 h-2 rounded-full" style={{ width: stat.avg }}></div>
+                </div>
+                <div className="flex justify-between items-center pt-2 text-sm">
+                  <span className="text-emerald-600 font-medium">Highest: {stat.highest}</span>
+                  <span className="text-rose-600 font-medium">Lowest: {stat.lowest}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  // Generic fallback for other features to save space but still look good
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">
-      <BarChart3 className="w-16 h-16 text-slate-300 mb-4" />
-      <h4 className="text-2xl font-bold text-slate-800 mb-2">Dashboard View</h4>
+      <Activity className="w-16 h-16 text-slate-300 mb-4" />
+      <h4 className="text-2xl font-bold text-slate-800 mb-2">{featureId.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ')} Dashboard</h4>
       <p className="text-slate-500 max-w-md">
-        This is a simulated dashboard view for this module. In the live application, this area contains real-time charts, data tables, and management controls.
+        This is a simulated dashboard view for this module. In the live application, this area contains real-time charts, data tables, and management controls specific to this feature.
       </p>
       <div className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-4xl">
         {[1, 2, 3].map(i => (
@@ -264,7 +512,7 @@ export default function EducationTab() {
               </div>
               <div>
                 <p className="text-sm text-blue-200 uppercase tracking-wider">Email</p>
-                <p className="text-lg font-medium">Zanyait@gmail.com</p>
+                <p className="text-lg font-medium">cloudbooksit@gmail.com</p>
               </div>
             </div>
             
