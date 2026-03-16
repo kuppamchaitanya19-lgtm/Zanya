@@ -25,6 +25,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
             <label className="block text-sm font-bold text-slate-700 mb-2">Select Service</label>
             <select className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-500 outline-none">
               <option>Premium Hair Styling - $85</option>
+              <option>Men's Grooming & Fade - $45</option>
               <option>Luxury Spa Treatment - $120</option>
               <option>Bridal Makeup - $150</option>
               <option>Nail Art & Care - $45</option>
@@ -50,7 +51,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
             <select className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-500 outline-none">
               <option>No Preference</option>
               <option>Emma (Master Stylist)</option>
-              <option>David (Color Specialist)</option>
+              <option>David (Men's Grooming Expert)</option>
               <option>Sarah (Nail Technician)</option>
             </select>
           </div>
@@ -104,7 +105,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
               <tbody className="divide-y divide-slate-100">
                 {[
                   { time: '10:00 AM', client: 'Jessica Alba', service: 'Premium Hair Styling', stylist: 'Emma', status: 'Confirmed', statusColor: 'bg-emerald-100 text-emerald-700' },
-                  { time: '11:30 AM', client: 'Michael Smith', service: 'Men\'s Grooming', stylist: 'David', status: 'Pending', statusColor: 'bg-orange-100 text-orange-700' },
+                  { time: '11:30 AM', client: 'Michael Smith', service: 'Men\'s Grooming & Fade', stylist: 'David', status: 'Pending', statusColor: 'bg-orange-100 text-orange-700' },
                   { time: '01:00 PM', client: 'Sarah Connor', service: 'Luxury Spa Treatment', stylist: 'Sarah', status: 'Confirmed', statusColor: 'bg-emerald-100 text-emerald-700' },
                   { time: '02:30 PM', client: 'Emily Blunt', service: 'Bridal Makeup', stylist: 'Emma', status: 'In Progress', statusColor: 'bg-blue-100 text-blue-700' },
                 ].map((row, i) => (
@@ -147,12 +148,12 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { name: 'Emma Thompson', role: 'Master Stylist', rating: '4.9', clients: 124, img: 'https://picsum.photos/seed/emma/150/150' },
-            { name: 'David Chen', role: 'Color Specialist', rating: '4.8', clients: 98, img: 'https://picsum.photos/seed/david/150/150' },
-            { name: 'Sarah Jenkins', role: 'Nail Technician', rating: '4.7', clients: 156, img: 'https://picsum.photos/seed/sarah/150/150' },
+            { name: 'Emma Thompson', role: 'Master Stylist', rating: '4.9', clients: 124, img: 'https://images.unsplash.com/photo-1595152772835-219674b2a8a6?auto=format&fit=crop&q=80&w=150' },
+            { name: 'David Chen', role: 'Men\'s Grooming Expert', rating: '4.8', clients: 98, img: 'https://images.unsplash.com/photo-1580618672591-eb180b1a973f?auto=format&fit=crop&q=80&w=150' },
+            { name: 'Sarah Jenkins', role: 'Nail Technician', rating: '4.7', clients: 156, img: 'https://images.unsplash.com/photo-1605497788044-5a32c7078486?auto=format&fit=crop&q=80&w=150' },
           ].map((staff, i) => (
             <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex flex-col items-center text-center">
-              <img src={staff.img} alt={staff.name} className="w-24 h-24 rounded-full mb-4 border-4 border-indigo-50" referrerPolicy="no-referrer" />
+              <img src={staff.img} alt={staff.name} className="w-24 h-24 rounded-full mb-4 border-4 border-indigo-50 object-cover" referrerPolicy="no-referrer" />
               <h4 className="text-lg font-bold text-slate-800">{staff.name}</h4>
               <p className="text-sm text-indigo-600 font-medium mb-4">{staff.role}</p>
               
@@ -235,10 +236,10 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
               <tbody className="divide-y divide-slate-100">
                 {[
                   { name: 'Argan Oil Hair Serum', category: 'Hair Care', stock: 45, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$24.00' },
-                  { name: 'Color Protect Shampoo', category: 'Hair Care', stock: 8, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$18.50' },
-                  { name: 'Hydrating Face Mask', category: 'Skincare', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$32.00' },
+                  { name: 'Premium Men\'s Beard Oil', category: 'Men\'s Grooming', stock: 8, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$18.50' },
+                  { name: 'Matte Hair Clay', category: 'Men\'s Styling', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$22.00' },
                   { name: 'Professional Hair Spray', category: 'Styling', stock: 120, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$15.00' },
-                  { name: 'Gel Nail Polish Set', category: 'Nail Care', stock: 15, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$45.00' },
+                  { name: 'Soothing Aftershave Balm', category: 'Men\'s Grooming', stock: 15, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$28.00' },
                 ].map((item, i) => (
                   <tr key={i} className="hover:bg-slate-50 transition-colors">
                     <td className="p-4 text-slate-800 font-medium">{item.name}</td>
@@ -320,9 +321,9 @@ export default function SalonTab() {
           <div className="md:w-1/2 relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-pink-200 to-rose-100 rounded-full blur-3xl opacity-50 transform translate-x-10 translate-y-10"></div>
             <img 
-              src="https://picsum.photos/seed/salon/800/600" 
+              src="https://images.unsplash.com/photo-1521590832167-7bfc17484d20?auto=format&fit=crop&q=80&w=800" 
               alt="Salon Interior" 
-              className="relative z-10 rounded-3xl shadow-2xl border-4 border-white transform -rotate-2"
+              className="relative z-10 rounded-3xl shadow-2xl border-4 border-white transform -rotate-2 object-cover h-[400px] w-full"
               referrerPolicy="no-referrer"
             />
           </div>

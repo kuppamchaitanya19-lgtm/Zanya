@@ -5,7 +5,7 @@ import {
   Mail, Bell, Lock, FileText, MessageSquare, 
   CalendarDays, AlertCircle, BookOpen, X, CheckCircle2,
   MapPin, Phone, Mail as MailIcon, User, GraduationCap,
-  Activity, BarChart3
+  Activity, BarChart3, Smartphone, Package, AlertTriangle
 } from 'lucide-react';
 
 const features = [
@@ -343,6 +343,351 @@ function DemoDashboard({ featureId }: { featureId: string }) {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'email') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Emails Sent (This Month)</p>
+              <p className="text-3xl font-bold text-slate-800">14,250</p>
+            </div>
+            <div className="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center">
+              <Mail className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Average Open Rate</p>
+              <p className="text-3xl font-bold text-emerald-600">68.4%</p>
+            </div>
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+              <Activity className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Click Rate</p>
+              <p className="text-3xl font-bold text-blue-600">24.1%</p>
+            </div>
+            <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
+              <Users className="w-6 h-6" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+            <h3 className="text-lg font-bold text-slate-800">Recent Campaigns</h3>
+            <button className="px-4 py-2 bg-amber-600 text-white rounded-lg text-sm font-medium hover:bg-amber-700 transition-colors">
+              Compose Email
+            </button>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-500 text-sm">
+                  <th className="p-4 font-medium">Campaign Name</th>
+                  <th className="p-4 font-medium">Audience</th>
+                  <th className="p-4 font-medium">Sent Date</th>
+                  <th className="p-4 font-medium">Status</th>
+                  <th className="p-4 font-medium">Open Rate</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Term 1 Fee Reminder', audience: 'All Parents', date: 'Oct 25, 2023', status: 'Sent', statusColor: 'bg-emerald-100 text-emerald-700', rate: '82%' },
+                  { name: 'Diwali Holiday Notice', audience: 'Students & Staff', date: 'Oct 20, 2023', status: 'Sent', statusColor: 'bg-emerald-100 text-emerald-700', rate: '94%' },
+                  { name: 'Monthly Newsletter - Oct', audience: 'Subscribers', date: 'Oct 15, 2023', status: 'Sent', statusColor: 'bg-emerald-100 text-emerald-700', rate: '45%' },
+                  { name: 'Parent-Teacher Meeting', audience: 'Grade 10 Parents', date: 'Scheduled', status: 'Draft', statusColor: 'bg-slate-100 text-slate-700', rate: '-' },
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-slate-800 font-medium">{row.name}</td>
+                    <td className="p-4 text-slate-600">{row.audience}</td>
+                    <td className="p-4 text-slate-600">{row.date}</td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${row.statusColor}`}>
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="p-4 font-medium text-slate-700">{row.rate}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'push') {
+    return (
+      <div className="flex flex-col md:flex-row gap-6">
+        <div className="flex-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <h3 className="text-lg font-bold text-slate-800 mb-6">Compose Push Notification</h3>
+          <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Target Audience</label>
+              <select className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none">
+                <option>All Users (Parents, Students, Staff)</option>
+                <option>Parents Only</option>
+                <option>Students Only</option>
+                <option>Staff Only</option>
+                <option>Specific Grade/Class</option>
+              </select>
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Notification Title</label>
+              <input type="text" className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="e.g., School Closed Tomorrow" defaultValue="Unexpected Weather Alert" />
+            </div>
+            <div>
+              <label className="block text-sm font-bold text-slate-700 mb-2">Message Body</label>
+              <textarea rows={4} className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Enter your message here..." defaultValue="Due to heavy rainfall, the school will remain closed tomorrow. Stay safe!"></textarea>
+            </div>
+            <button className="w-full py-4 bg-emerald-600 text-white rounded-xl font-bold hover:bg-emerald-700 transition-colors shadow-lg mt-4 flex items-center justify-center space-x-2">
+              <Smartphone className="w-5 h-5" />
+              <span>Send Notification Now</span>
+            </button>
+          </form>
+        </div>
+        <div className="w-full md:w-80 flex flex-col items-center">
+          <p className="text-sm font-bold text-slate-500 mb-4 uppercase tracking-wider">Mobile Preview</p>
+          <div className="w-72 h-[500px] bg-slate-100 rounded-[3rem] border-[12px] border-slate-800 p-4 relative shadow-2xl overflow-hidden flex flex-col">
+            <div className="absolute top-0 inset-x-0 h-6 bg-slate-800 rounded-b-3xl w-32 mx-auto"></div>
+            <div className="mt-12 space-y-4 flex-1">
+              <div className="bg-white/80 backdrop-blur-md p-4 rounded-2xl shadow-sm border border-slate-200/50">
+                <div className="flex items-center space-x-2 mb-2">
+                  <div className="w-6 h-6 bg-emerald-500 rounded-md flex items-center justify-center">
+                    <span className="text-white text-[10px] font-bold">Z</span>
+                  </div>
+                  <span className="text-xs font-bold text-slate-700">Zanya App • Now</span>
+                </div>
+                <h5 className="font-bold text-slate-800 text-sm">Unexpected Weather Alert</h5>
+                <p className="text-xs text-slate-600 mt-1">Due to heavy rainfall, the school will remain closed tomorrow. Stay safe!</p>
+              </div>
+            </div>
+            <div className="mt-auto pt-4 text-center">
+              <div className="w-24 h-1 bg-slate-300 rounded-full mx-auto"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'login') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { role: 'Administrators', count: 5, color: 'bg-rose-100 text-rose-600' },
+            { role: 'Teachers', count: 84, color: 'bg-blue-100 text-blue-600' },
+            { role: 'Parents', count: 1240, color: 'bg-emerald-100 text-emerald-600' },
+            { role: 'Students', count: 1150, color: 'bg-purple-100 text-purple-600' },
+          ].map((item, i) => (
+            <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-slate-100 text-center">
+              <div className={`w-12 h-12 mx-auto rounded-full flex items-center justify-center mb-2 ${item.color}`}>
+                <Users className="w-6 h-6" />
+              </div>
+              <p className="text-2xl font-bold text-slate-800">{item.count}</p>
+              <p className="text-xs font-medium text-slate-500 uppercase">{item.role}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+            <h3 className="text-lg font-bold text-slate-800">Active Sessions</h3>
+            <span className="flex items-center space-x-2 text-sm text-emerald-600 font-medium">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+              <span>Live Monitoring</span>
+            </span>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-500 text-sm">
+                  <th className="p-4 font-medium">User</th>
+                  <th className="p-4 font-medium">Role</th>
+                  <th className="p-4 font-medium">IP Address</th>
+                  <th className="p-4 font-medium">Login Time</th>
+                  <th className="p-4 font-medium">Action</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Dr. Robert Adams', role: 'Admin', ip: '192.168.1.45', time: '08:15 AM', roleColor: 'bg-rose-100 text-rose-700' },
+                  { name: 'Sarah Jenkins', role: 'Teacher', ip: '10.0.0.12', time: '08:30 AM', roleColor: 'bg-blue-100 text-blue-700' },
+                  { name: 'Michael Smith', role: 'Parent', ip: '172.16.254.1', time: '09:45 AM', roleColor: 'bg-emerald-100 text-emerald-700' },
+                  { name: 'Emma Davis', role: 'Student', ip: '10.0.0.55', time: '10:02 AM', roleColor: 'bg-purple-100 text-purple-700' },
+                ].map((row, i) => (
+                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-slate-800 font-medium">{row.name}</td>
+                    <td className="p-4">
+                      <span className={`px-2 py-1 rounded text-xs font-medium ${row.roleColor}`}>
+                        {row.role}
+                      </span>
+                    </td>
+                    <td className="p-4 text-slate-500 font-mono text-sm">{row.ip}</td>
+                    <td className="p-4 text-slate-600">{row.time}</td>
+                    <td className="p-4">
+                      <button className="text-xs font-medium text-rose-600 hover:text-rose-700 border border-rose-200 px-3 py-1 rounded hover:bg-rose-50 transition-colors">
+                        Revoke
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'concern') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div>
+            <h3 className="text-lg font-bold text-slate-800">Helpdesk & Concerns</h3>
+            <p className="text-sm text-slate-500">Manage tickets raised by parents and students.</p>
+          </div>
+          <div className="flex space-x-2">
+            <span className="px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">12 Open</span>
+            <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-bold">5 In Progress</span>
+          </div>
+        </div>
+
+        <div className="space-y-4">
+          {[
+            { id: 'TCK-1042', subject: 'School bus arriving late', from: 'John Doe (Parent)', category: 'Transport', status: 'Open', priority: 'High', time: '2 hours ago' },
+            { id: 'TCK-1041', subject: 'Issue with cafeteria food quality', from: 'Emma Smith (Student)', category: 'Facilities', status: 'In Progress', priority: 'Medium', time: '5 hours ago' },
+            { id: 'TCK-1040', subject: 'Unable to access exam results portal', from: 'Sarah Jenkins (Parent)', category: 'IT Support', status: 'Resolved', priority: 'High', time: '1 day ago' },
+          ].map((ticket, i) => (
+            <div key={i} className="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+              <div className="flex-1">
+                <div className="flex items-center space-x-3 mb-2">
+                  <span className="text-xs font-mono font-bold text-slate-500">{ticket.id}</span>
+                  <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
+                    ticket.priority === 'High' ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700'
+                  }`}>{ticket.priority} Priority</span>
+                  <span className="text-xs text-slate-400">{ticket.time}</span>
+                </div>
+                <h4 className="font-bold text-slate-800 text-lg">{ticket.subject}</h4>
+                <p className="text-sm text-slate-500">From: {ticket.from} • Category: {ticket.category}</p>
+              </div>
+              <div className="flex items-center space-x-4">
+                <span className={`px-3 py-1 rounded-full text-xs font-bold ${
+                  ticket.status === 'Open' ? 'bg-rose-100 text-rose-700' :
+                  ticket.status === 'In Progress' ? 'bg-amber-100 text-amber-700' :
+                  'bg-emerald-100 text-emerald-700'
+                }`}>
+                  {ticket.status}
+                </span>
+                <button className="px-4 py-2 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
+                  View Details
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'books') {
+    return (
+      <div className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Total Inventory Items</p>
+              <p className="text-3xl font-bold text-slate-800">1,845</p>
+            </div>
+            <div className="w-12 h-12 bg-sky-100 text-sky-600 rounded-full flex items-center justify-center">
+              <Package className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Low Stock Alerts</p>
+              <p className="text-3xl font-bold text-rose-600">8</p>
+            </div>
+            <div className="w-12 h-12 bg-rose-100 text-rose-600 rounded-full flex items-center justify-center">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+          </div>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
+            <div>
+              <p className="text-sm text-slate-500 font-medium mb-1">Items Distributed</p>
+              <p className="text-3xl font-bold text-emerald-600">850</p>
+            </div>
+            <div className="w-12 h-12 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center">
+              <CheckCircle2 className="w-6 h-6" />
+            </div>
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+            <h3 className="text-lg font-bold text-slate-800">Inventory Status</h3>
+            <div className="flex space-x-2">
+              <input type="text" placeholder="Search items..." className="px-4 py-2 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-sky-500" />
+              <button className="px-4 py-2 bg-sky-600 text-white rounded-lg text-sm font-medium hover:bg-sky-700 transition-colors">
+                Add Stock
+              </button>
+            </div>
+          </div>
+          <div className="overflow-x-auto">
+            <table className="w-full text-left border-collapse">
+              <thead>
+                <tr className="bg-slate-50 text-slate-500 text-sm">
+                  <th className="p-4 font-medium">Item Name</th>
+                  <th className="p-4 font-medium">Category</th>
+                  <th className="p-4 font-medium">Stock Level</th>
+                  <th className="p-4 font-medium">Status</th>
+                  <th className="p-4 font-medium">Price</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100">
+                {[
+                  { name: 'Grade 10 Mathematics Textbook', category: 'Books', stock: 145, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$45.00' },
+                  { name: 'Summer Uniform Shirt (Size M)', category: 'Uniforms', stock: 12, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$25.00' },
+                  { name: 'Winter Jacket (Size L)', category: 'Uniforms', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$65.00' },
+                  { name: 'Grade 8 Science Lab Manual', category: 'Books', stock: 80, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$15.00' },
+                ].map((item, i) => (
+                  <tr key={i} className="hover:bg-slate-50 transition-colors">
+                    <td className="p-4 text-slate-800 font-medium">{item.name}</td>
+                    <td className="p-4 text-slate-600">{item.category}</td>
+                    <td className="p-4">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-full bg-slate-200 rounded-full h-2 max-w-[100px]">
+                          <div 
+                            className={`h-2 rounded-full ${item.stock > 50 ? 'bg-emerald-500' : item.stock > 0 ? 'bg-orange-500' : 'bg-rose-500'}`} 
+                            style={{ width: `${Math.min(100, (item.stock / 150) * 100)}%` }}
+                          ></div>
+                        </div>
+                        <span className="text-sm text-slate-600">{item.stock}</span>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${item.statusColor}`}>
+                        {item.status}
+                      </span>
+                    </td>
+                    <td className="p-4 text-slate-800 font-medium">{item.price}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     );
