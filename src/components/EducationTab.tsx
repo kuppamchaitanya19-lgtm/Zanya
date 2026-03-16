@@ -693,6 +693,111 @@ function DemoDashboard({ featureId }: { featureId: string }) {
     );
   }
 
+  if (featureId === 'text') {
+    return (
+      <div className="space-y-6">
+        <div className="flex flex-col md:flex-row gap-6">
+          <div className="flex-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h3 className="text-lg font-bold text-slate-800 mb-6">Send Text Update</h3>
+            <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Recipient Group</label>
+                <select className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-sky-500 outline-none">
+                  <option>Grade 10 Parents</option>
+                  <option>All Teaching Staff</option>
+                  <option>Bus Route 4 Parents</option>
+                  <option>Custom Selection</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-bold text-slate-700 mb-2">Message (Max 160 chars)</label>
+                <textarea rows={3} maxLength={160} className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-sky-500 outline-none resize-none" placeholder="Type your SMS message here..." defaultValue="Reminder: Tomorrow is a half-day for all Grade 10 students due to the science exhibition preparation. Dismissal at 12:30 PM."></textarea>
+                <div className="text-right text-xs text-slate-400 mt-1">124/160 characters</div>
+              </div>
+              <button className="w-full py-4 bg-sky-600 text-white rounded-xl font-bold hover:bg-sky-700 transition-colors shadow-lg mt-4 flex items-center justify-center space-x-2">
+                <MessageSquare className="w-5 h-5" />
+                <span>Send SMS Now</span>
+              </button>
+            </form>
+          </div>
+          <div className="w-full md:w-80 flex flex-col">
+            <h3 className="text-lg font-bold text-slate-800 mb-4">Recent Messages</h3>
+            <div className="space-y-3 flex-1 overflow-y-auto">
+              {[
+                { to: 'Grade 10 Parents', msg: 'Reminder: Tomorrow is a half-day for all Grade 10 students...', time: 'Just now', status: 'Sending' },
+                { to: 'All Staff', msg: 'Staff meeting scheduled for 3:00 PM in the main hall.', time: '2 hours ago', status: 'Delivered' },
+                { to: 'Bus Route 4', msg: 'Bus 4 is running 15 mins late due to traffic.', time: 'Yesterday', status: 'Delivered' },
+              ].map((msg, i) => (
+                <div key={i} className="bg-white p-4 rounded-xl shadow-sm border border-slate-100">
+                  <div className="flex justify-between items-center mb-2">
+                    <span className="text-xs font-bold text-slate-700">{msg.to}</span>
+                    <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${msg.status === 'Delivered' ? 'bg-emerald-100 text-emerald-700' : 'bg-amber-100 text-amber-700'}`}>{msg.status}</span>
+                  </div>
+                  <p className="text-sm text-slate-600 line-clamp-2">{msg.msg}</p>
+                  <p className="text-[10px] text-slate-400 mt-2 text-right">{msg.time}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  if (featureId === 'ptm') {
+    return (
+      <div className="space-y-6">
+        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+          <div>
+            <h3 className="text-lg font-bold text-slate-800">Upcoming PTMs</h3>
+            <p className="text-sm text-slate-500">Manage schedules and parent confirmations.</p>
+          </div>
+          <button className="px-4 py-2 bg-violet-600 text-white rounded-lg text-sm font-medium hover:bg-violet-700 transition-colors flex items-center space-x-2">
+            <CalendarDays className="w-4 h-4" />
+            <span>Schedule New PTM</span>
+          </button>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { title: 'Term 1 Review - Grade 10', date: 'Oct 28, 2023', time: '09:00 AM - 02:00 PM', confirmed: 34, total: 40, status: 'Upcoming', color: 'bg-violet-100 text-violet-700' },
+            { title: 'Mid-Term Discussion - Grade 8', date: 'Nov 05, 2023', time: '10:00 AM - 03:00 PM', confirmed: 12, total: 35, status: 'Scheduling', color: 'bg-amber-100 text-amber-700' },
+            { title: 'Annual Review - All Grades', date: 'Dec 15, 2023', time: '09:00 AM - 04:00 PM', confirmed: 0, total: 450, status: 'Draft', color: 'bg-slate-100 text-slate-700' },
+          ].map((ptm, i) => (
+            <div key={i} className="bg-white p-5 rounded-2xl shadow-sm border border-slate-100 flex flex-col h-full">
+              <div className="flex justify-between items-start mb-4">
+                <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${ptm.color}`}>{ptm.status}</span>
+                <button className="text-slate-400 hover:text-slate-600">
+                  <Activity className="w-4 h-4" />
+                </button>
+              </div>
+              <h4 className="font-bold text-slate-800 mb-2 line-clamp-1">{ptm.title}</h4>
+              <div className="space-y-2 mb-6 flex-1">
+                <div className="flex items-center text-sm text-slate-600">
+                  <Calendar className="w-4 h-4 mr-2 text-slate-400" />
+                  {ptm.date}
+                </div>
+                <div className="flex items-center text-sm text-slate-600">
+                  <Activity className="w-4 h-4 mr-2 text-slate-400" />
+                  {ptm.time}
+                </div>
+              </div>
+              <div className="pt-4 border-t border-slate-100">
+                <div className="flex justify-between items-center mb-1">
+                  <span className="text-xs font-medium text-slate-500">Confirmed Parents</span>
+                  <span className="text-xs font-bold text-slate-800">{ptm.confirmed}/{ptm.total}</span>
+                </div>
+                <div className="w-full bg-slate-100 rounded-full h-1.5">
+                  <div className="bg-violet-500 h-1.5 rounded-full" style={{ width: `${(ptm.confirmed / ptm.total) * 100}%` }}></div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  }
+
   // Generic fallback for other features to save space but still look good
   return (
     <div className="flex flex-col items-center justify-center py-16 text-center">

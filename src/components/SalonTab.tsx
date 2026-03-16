@@ -321,7 +321,7 @@ export default function SalonTab() {
           <div className="md:w-1/2 relative">
             <div className="absolute inset-0 bg-gradient-to-tr from-pink-200 to-rose-100 rounded-full blur-3xl opacity-50 transform translate-x-10 translate-y-10"></div>
             <img 
-              src="https://images.unsplash.com/photo-1521590832167-7bfc17484d20?auto=format&fit=crop&q=80&w=800" 
+              src="https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&q=80&w=800" 
               alt="Salon Interior" 
               className="relative z-10 rounded-3xl shadow-2xl border-4 border-white transform -rotate-2 object-cover h-[400px] w-full"
               referrerPolicy="no-referrer"

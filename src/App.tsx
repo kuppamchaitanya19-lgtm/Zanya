@@ -5,12 +5,13 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Building2, GraduationCap, Scissors, Menu, X, Users, PhoneCall } from 'lucide-react';
+import { Building2, GraduationCap, Scissors, Menu, X, Users, PhoneCall, DollarSign } from 'lucide-react';
 import EducationTab from './components/EducationTab';
 import HotelTab from './components/HotelTab';
 import SalonTab from './components/SalonTab';
 import CrmTab from './components/CrmTab';
 import ContactTab from './components/ContactTab';
+import PricingTab from './components/PricingTab';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('education');
@@ -22,6 +23,7 @@ export default function App() {
     { id: 'crm', label: 'CRM Services', icon: Users },
     { id: 'hotel', label: 'Hotel Management', icon: Building2 },
     { id: 'salon', label: 'Salon Services', icon: Scissors },
+    { id: 'pricing', label: 'Pricing', icon: DollarSign },
     { id: 'contact', label: 'Contact Us', icon: PhoneCall },
   ];
 
@@ -143,6 +145,7 @@ export default function App() {
             {activeTab === 'crm' && <CrmTab />}
             {activeTab === 'hotel' && <HotelTab />}
             {activeTab === 'salon' && <SalonTab />}
+            {activeTab === 'pricing' && <PricingTab />}
             {activeTab === 'contact' && <ContactTab />}
           </motion.div>
         </AnimatePresence>
