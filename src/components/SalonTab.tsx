@@ -291,7 +291,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
   );
 }
 
-export default function SalonTab() {
+export default function SalonTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
   return (
@@ -313,8 +313,8 @@ export default function SalonTab() {
               From seamless client bookings to staff scheduling and inventory management, run your beauty business with elegance.
             </p>
             
-            <button className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-colors shadow-xl">
-              Start Free Trial
+            <button onClick={() => setActiveTab?.('contact')} className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-colors shadow-xl">
+              Request a Demo
             </button>
           </div>
           

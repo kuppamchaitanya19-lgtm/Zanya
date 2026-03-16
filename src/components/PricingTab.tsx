@@ -53,7 +53,7 @@ const plans = [
   },
 ];
 
-export default function PricingTab() {
+export default function PricingTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   return (
     <div className="w-full py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -111,7 +111,7 @@ export default function PricingTab() {
                 </div>
                 
                 <div className="p-8 pt-0 mt-auto">
-                  <button className={`w-full py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg ${
+                  <button onClick={() => setActiveTab?.('contact')} className={`w-full py-4 rounded-xl font-bold transition-all shadow-md hover:shadow-lg ${
                     isPopular 
                       ? `bg-gradient-to-r ${colorClasses.split(' ')[0]} ${colorClasses.split(' ')[1]} text-white` 
                       : 'bg-slate-100 text-slate-800 hover:bg-slate-200'
@@ -129,7 +129,7 @@ export default function PricingTab() {
           <p className="text-slate-600 mb-8 max-w-2xl mx-auto">
             We offer tailored implementations, dedicated support, and custom feature development for large organizations.
           </p>
-          <button className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-colors shadow-lg">
+          <button onClick={() => setActiveTab?.('contact')} className="px-8 py-4 bg-slate-900 text-white rounded-full font-bold hover:bg-slate-800 transition-colors shadow-lg">
             Contact Sales Team
           </button>
         </div>

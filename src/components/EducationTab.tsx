@@ -819,7 +819,7 @@ function DemoDashboard({ featureId }: { featureId: string }) {
   );
 }
 
-export default function EducationTab() {
+export default function EducationTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
   return (
@@ -843,7 +843,7 @@ export default function EducationTab() {
             Streamline your institution's operations with our all-in-one platform — from attendance tracking to admission management, all in one powerful system.
           </p>
           
-          <div className="flex flex-wrap gap-6 text-sm md:text-base font-medium text-blue-50">
+          <div className="flex flex-wrap gap-6 text-sm md:text-base font-medium text-blue-50 mb-10">
             <div className="flex items-center space-x-2">
               <CheckCircle2 className="w-5 h-5 text-blue-300" />
               <span>Classroom & Gate Attendance</span>
@@ -857,6 +857,10 @@ export default function EducationTab() {
               <span>Multi-role Login System</span>
             </div>
           </div>
+
+          <button onClick={() => setActiveTab?.('contact')} className="px-8 py-4 bg-white text-blue-900 rounded-full font-bold hover:bg-blue-50 transition-colors shadow-xl">
+            Request a Demo
+          </button>
         </div>
         
         <div className="absolute bottom-0 left-0 right-0 h-16 bg-slate-50" style={{ clipPath: 'ellipse(100% 100% at 50% 100%)' }}></div>

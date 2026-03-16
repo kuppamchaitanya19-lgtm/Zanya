@@ -211,7 +211,7 @@ function HotelDemoDashboard({ featureId }: { featureId: string }) {
   );
 }
 
-export default function HotelTab() {
+export default function HotelTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
   return (
@@ -230,8 +230,8 @@ export default function HotelTab() {
           <p className="text-xl md:text-2xl text-slate-300 max-w-2xl mb-10 leading-relaxed">
             Elevate guest experiences and optimize operations with our comprehensive hospitality suite.
           </p>
-          <button className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-lg">
-            Explore Features
+          <button onClick={() => setActiveTab?.('contact')} className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold hover:bg-slate-100 transition-colors shadow-lg">
+            Request a Demo
           </button>
         </div>
       </section>

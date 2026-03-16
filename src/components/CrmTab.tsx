@@ -260,7 +260,7 @@ function CrmDemoDashboard({ featureId }: { featureId: string }) {
   );
 }
 
-export default function CrmTab() {
+export default function CrmTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
 
   return (
@@ -282,8 +282,8 @@ export default function CrmTab() {
               Empower your sales and support teams with a unified platform to manage leads, engage customers, and drive growth.
             </p>
             
-            <button className="px-8 py-4 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-xl">
-              Explore CRM
+            <button onClick={() => setActiveTab?.('contact')} className="px-8 py-4 bg-orange-600 text-white rounded-full font-bold hover:bg-orange-700 transition-colors shadow-xl">
+              Request a Demo
             </button>
           </div>
           

@@ -141,11 +141,11 @@ export default function App() {
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.2 }}
           >
-            {activeTab === 'education' && <EducationTab />}
-            {activeTab === 'crm' && <CrmTab />}
-            {activeTab === 'hotel' && <HotelTab />}
-            {activeTab === 'salon' && <SalonTab />}
-            {activeTab === 'pricing' && <PricingTab />}
+            {activeTab === 'education' && <EducationTab setActiveTab={setActiveTab} />}
+            {activeTab === 'crm' && <CrmTab setActiveTab={setActiveTab} />}
+            {activeTab === 'hotel' && <HotelTab setActiveTab={setActiveTab} />}
+            {activeTab === 'salon' && <SalonTab setActiveTab={setActiveTab} />}
+            {activeTab === 'pricing' && <PricingTab setActiveTab={setActiveTab} />}
             {activeTab === 'contact' && <ContactTab />}
           </motion.div>
         </AnimatePresence>
