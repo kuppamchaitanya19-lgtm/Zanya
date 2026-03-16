@@ -7,7 +7,7 @@ export default function ContactTab() {
   const [isSuccess, setIsSuccess] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
     
@@ -18,22 +18,35 @@ export default function ContactTab() {
     const service = formData.get('service') as string;
     const remarks = formData.get('remarks') as string;
     
-    const subject = encodeURIComponent(`New Demo Request from ${name}`);
-    const body = encodeURIComponent(`Name: ${name}\nMobile: ${mobile}\nLocation: ${location}\nInterested Service: ${service}\nRemarks: ${remarks}`);
-    
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      await fetch("https://formsubmit.co/ajax/cloudbooksit@gmail.com", {
+        method: "POST",
+        headers: { 
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+            _subject: `New Demo Request from ${name}`,
+            name,
+            mobile,
+            location,
+            service,
+            remarks
+        })
+      });
+      
       setIsSubmitting(false);
       setIsSuccess(true);
-      
-      window.location.href = `mailto:cloudbooksit@gmail.com?subject=${subject}&body=${body}`;
-      
       formRef.current?.reset();
       
       setTimeout(() => {
         setIsSuccess(false);
       }, 5000);
-    }, 1000);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      setIsSubmitting(false);
+      alert("There was an error submitting the form. Please try again later.");
+    }
   };
 
   return (
@@ -63,6 +76,9 @@ export default function ContactTab() {
             <div className="h-2.5 bg-[#673ab7] w-full"></div>
             <div className="p-6 md:p-8">
               <h1 className="text-3xl md:text-4xl font-normal text-gray-900 mb-3">Request a Demo / Contact Us</h1>
+              <p className="text-gray-800 font-medium text-sm md:text-base mb-2">
+                Any service is customizable as per your needs
+              </p>
               <p className="text-gray-600 text-sm md:text-base mb-4">
                 Please fill out the form below to request a demo or get in touch with our sales team. We will contact you shortly.
               </p>
