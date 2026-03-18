@@ -40,7 +40,7 @@ function CrmDemoDashboard({ featureId }: { featureId: string }) {
                 {stage.leads.map((lead, j) => (
                   <div key={j} className="bg-white p-3 rounded-lg shadow-sm border border-slate-100 cursor-pointer hover:border-orange-300 transition-colors">
                     <p className="font-bold text-slate-800 text-sm">{lead}</p>
-                    <p className="text-xs text-slate-500 mt-1">Value: ${(Math.random() * 10000 + 1000).toFixed(0)}</p>
+                    <p className="text-xs text-slate-500 mt-1">Value: ₹{(Math.random() * 10000 + 1000).toFixed(0)}</p>
                     <div className="mt-2 flex items-center justify-between">
                       <span className="text-[10px] font-medium px-2 py-0.5 bg-slate-100 text-slate-600 rounded">Software</span>
                       <div className="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[8px] font-bold text-slate-600">JD</div>
@@ -185,7 +185,7 @@ function CrmDemoDashboard({ featureId }: { featureId: string }) {
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
             <p className="text-sm text-slate-500 font-medium mb-2">Total Revenue (YTD)</p>
             <div className="flex items-end space-x-3">
-              <p className="text-3xl font-bold text-slate-800">$1.24M</p>
+              <p className="text-3xl font-bold text-slate-800">₹1.24M</p>
               <span className="flex items-center text-sm font-medium text-emerald-600 mb-1">
                 <ArrowUpRight className="w-4 h-4 mr-1" />
                 14.5%
@@ -205,7 +205,7 @@ function CrmDemoDashboard({ featureId }: { featureId: string }) {
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
             <p className="text-sm text-slate-500 font-medium mb-2">Avg. Deal Size</p>
             <div className="flex items-end space-x-3">
-              <p className="text-3xl font-bold text-slate-800">$14,500</p>
+              <p className="text-3xl font-bold text-slate-800">₹14,500</p>
               <span className="flex items-center text-sm font-medium text-rose-600 mb-1">
                 <ArrowDownRight className="w-4 h-4 mr-1" />
                 1.2%

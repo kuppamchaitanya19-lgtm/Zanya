@@ -10,10 +10,10 @@ const features = [
 ];
 
 const staffMembers = [
-  { id: 1, name: 'Sarah Jenkins', role: 'Front Desk Manager', image: 'https://picsum.photos/seed/sarah/200/200' },
-  { id: 2, name: 'Michael Chen', role: 'Head of Housekeeping', image: 'https://picsum.photos/seed/michael/200/200' },
-  { id: 3, name: 'Elena Rodriguez', role: 'Concierge', image: 'https://picsum.photos/seed/elena/200/200' },
-  { id: 4, name: 'David Kim', role: 'Maintenance Supervisor', image: 'https://picsum.photos/seed/david/200/200' },
+  { id: 1, name: 'Aarav Sharma', role: 'Front Desk Manager', image: 'https://images.unsplash.com/photo-1556745753-b2904692b3cd?auto=format&fit=crop&q=80&w=200' },
+  { id: 2, name: 'Priya Patel', role: 'Head of Housekeeping', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&q=80&w=200' },
+  { id: 3, name: 'Rohan Gupta', role: 'Concierge', image: 'https://images.unsplash.com/photo-1585933646706-797300acac3e?auto=format&fit=crop&q=80&w=200' },
+  { id: 4, name: 'Neha Reddy', role: 'Maintenance Supervisor', image: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=200' },
 ];
 
 function HotelDemoDashboard({ featureId }: { featureId: string }) {
@@ -93,7 +93,7 @@ function HotelDemoDashboard({ featureId }: { featureId: string }) {
           </div>
           <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
             <p className="text-slate-500 text-sm font-medium">RevPAR</p>
-            <p className="text-3xl font-bold text-slate-800">$142.50</p>
+            <p className="text-3xl font-bold text-slate-800">₹142.50</p>
           </div>
         </div>
         <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">

@@ -5,23 +5,25 @@ import {
   Mail, Bell, Lock, FileText, MessageSquare, 
   CalendarDays, AlertCircle, BookOpen, X, CheckCircle2,
   MapPin, Phone, Mail as MailIcon, User, GraduationCap,
-  Activity, BarChart3, Smartphone, Package, AlertTriangle
+  Activity, BarChart3, Smartphone, Package, AlertTriangle,
+  UserX, TrendingUp, Check, Moon, Sun
 } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell } from 'recharts';
 
 const features = [
-  { id: 'class-attendance', title: 'Classroom Attendance', description: 'Automated digital attendance tracking for every class. Teachers mark attendance in seconds.', icon: Users, gradient: 'from-blue-500 to-blue-600' },
-  { id: 'gate-attendance', title: 'Gate Attendance', description: 'RFID/QR-based entry and exit tracking at campus gates. Real-time alerts to parents and staff.', icon: DoorOpen, gradient: 'from-teal-500 to-teal-600' },
-  { id: 'appointment', title: 'Appointment Management', description: 'Seamlessly schedule and manage appointments between parents, teachers, and administrators.', icon: Calendar, gradient: 'from-indigo-500 to-indigo-600' },
-  { id: 'visitor', title: 'Visitor Portal', description: 'Digital visitor registration and management. Pre-approve visitors, issue passes.', icon: UserCheck, gradient: 'from-purple-500 to-purple-600' },
-  { id: 'admission', title: 'Admission Portal', description: 'End-to-end online admission management — from application submission to fee payment.', icon: ClipboardList, gradient: 'from-emerald-500 to-emerald-600' },
-  { id: 'email', title: 'Email Alerts', description: 'Automated email notifications keep your entire team in sync.', icon: Mail, gradient: 'from-orange-500 to-orange-600' },
-  { id: 'push', title: 'Push Notifications', description: 'Instant in-app and push alerts for parents, teachers, and staff.', icon: Bell, gradient: 'from-yellow-500 to-amber-500' },
-  { id: 'login', title: 'Multi-Role Login System', description: 'Secure, role-based access for Parents, Teachers, Students, Admin, and Office Staff.', icon: Lock, gradient: 'from-rose-500 to-rose-600' },
-  { id: 'exam', title: 'Exam Management', description: 'Upload exam reports once and track them anytime. Instant access to performance reports.', icon: FileText, gradient: 'from-green-500 to-green-600' },
-  { id: 'text', title: 'Text Updates', description: 'Instant text-based updates between college and parents for easy communication.', icon: MessageSquare, gradient: 'from-sky-500 to-sky-600' },
-  { id: 'ptm', title: 'PTM Management', description: 'Schedule and manage Parent-Teacher Meetings effortlessly. Send invites and track attendance.', icon: CalendarDays, gradient: 'from-violet-500 to-violet-600' },
-  { id: 'concern', title: 'Raise Concern', description: 'A dedicated channel for parents and students to raise concerns directly to the administration.', icon: AlertCircle, gradient: 'from-red-500 to-red-600' },
-  { id: 'books', title: 'Books & Uniform Management', description: 'Manage textbook distribution and uniform orders digitally. Track inventory and payments.', icon: BookOpen, gradient: 'from-amber-500 to-amber-600' },
+  { id: 'class-attendance', title: 'Classroom Attendance', description: 'Automated digital attendance tracking for every class. Teachers mark attendance in seconds.', keyBenefit: 'Saves up to 15 minutes per class, maximizing instructional time.', icon: Users, gradient: 'from-blue-500 to-blue-600' },
+  { id: 'gate-attendance', title: 'Gate Attendance', description: 'RFID/QR-based entry and exit tracking at campus gates. Real-time alerts to parents and staff.', keyBenefit: 'Enhances campus security and provides peace of mind to parents.', icon: DoorOpen, gradient: 'from-teal-500 to-teal-600' },
+  { id: 'appointment', title: 'Appointment Management', description: 'Seamlessly schedule and manage appointments between parents, teachers, and administrators.', keyBenefit: 'Eliminates scheduling conflicts and improves parent-teacher engagement.', icon: Calendar, gradient: 'from-indigo-500 to-indigo-600' },
+  { id: 'visitor', title: 'Visitor Portal', description: 'Digital visitor registration and management. Pre-approve visitors, issue passes.', keyBenefit: 'Maintains a secure, auditable log of all campus visitors.', icon: UserCheck, gradient: 'from-purple-500 to-purple-600' },
+  { id: 'admission', title: 'Admission Portal', description: 'End-to-end online admission management — from application submission to fee payment.', keyBenefit: 'Reduces administrative workload and provides a frictionless experience for applicants.', icon: ClipboardList, gradient: 'from-emerald-500 to-emerald-600' },
+  { id: 'email', title: 'Email Alerts', description: 'Automated email notifications keep your entire team in sync.', keyBenefit: 'Ensures timely communication of critical updates to all stakeholders.', icon: Mail, gradient: 'from-orange-500 to-orange-600' },
+  { id: 'push', title: 'Push Notifications', description: 'Instant in-app and push alerts for parents, teachers, and staff.', keyBenefit: 'Guarantees immediate delivery of urgent messages and announcements.', icon: Bell, gradient: 'from-yellow-500 to-amber-500' },
+  { id: 'login', title: 'Multi-Role Login System', description: 'Secure, role-based access for Parents, Teachers, Students, Admin, and Office Staff.', keyBenefit: 'Protects sensitive data while providing tailored tools for each user type.', icon: Lock, gradient: 'from-rose-500 to-rose-600' },
+  { id: 'exam', title: 'Exam Management', description: 'Upload exam reports once and track them anytime. Instant access to performance reports.', keyBenefit: 'Simplifies grading workflows and provides actionable insights into student performance.', icon: FileText, gradient: 'from-green-500 to-green-600' },
+  { id: 'text', title: 'Text Updates', description: 'Instant text-based updates between college and parents for easy communication.', keyBenefit: 'Reaches parents directly on their mobile devices for high-priority alerts.', icon: MessageSquare, gradient: 'from-sky-500 to-sky-600' },
+  { id: 'ptm', title: 'PTM Management', description: 'Schedule and manage Parent-Teacher Meetings effortlessly. Send invites and track attendance.', keyBenefit: 'Increases PTM turnout and facilitates meaningful discussions about student progress.', icon: CalendarDays, gradient: 'from-violet-500 to-violet-600' },
+  { id: 'concern', title: 'Raise Concern', description: 'A dedicated channel for parents and students to raise concerns directly to the administration.', keyBenefit: 'Fosters a transparent, responsive school environment and accelerates issue resolution.', icon: AlertCircle, gradient: 'from-red-500 to-red-600' },
+  { id: 'books', title: 'Books & Uniform Management', description: 'Manage textbook distribution and uniform orders digitally. Track inventory and payments.', keyBenefit: 'Streamlines inventory management and prevents stockouts during peak seasons.', icon: BookOpen, gradient: 'from-amber-500 to-amber-600' },
 ];
 
 const pricingIncludes = [
@@ -35,66 +37,125 @@ const pricingIncludes = [
 
 function DemoDashboard({ featureId }: { featureId: string }) {
   if (featureId === 'class-attendance') {
+    const weeklyData = [
+      { name: 'Mon', present: 42, absent: 3 },
+      { name: 'Tue', present: 40, absent: 5 },
+      { name: 'Wed', present: 44, absent: 1 },
+      { name: 'Thu', present: 41, absent: 4 },
+      { name: 'Fri', present: 38, absent: 7 },
+    ];
+
     return (
       <div className="space-y-6">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Total Students</p>
-            <p className="text-3xl font-bold text-slate-800">45</p>
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+            <div className="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+              <Users className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Students</p>
+              <p className="text-2xl font-bold text-slate-800 dark:text-white">45</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Present</p>
-            <p className="text-3xl font-bold text-emerald-600">38</p>
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+            <div className="p-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full">
+              <UserCheck className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Present</p>
+              <p className="text-2xl font-bold text-slate-800 dark:text-white">38</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Absent</p>
-            <p className="text-3xl font-bold text-red-500">4</p>
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+            <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full">
+              <UserX className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Absent</p>
+              <p className="text-2xl font-bold text-slate-800 dark:text-white">4</p>
+            </div>
           </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Half Day (HF)</p>
-            <p className="text-3xl font-bold text-amber-500">3</p>
+          <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+            <div className="p-3 bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 rounded-full">
+              <AlertTriangle className="w-6 h-6" />
+            </div>
+            <div>
+              <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Half Day (HF)</p>
+              <p className="text-2xl font-bold text-slate-800 dark:text-white">3</p>
+            </div>
           </div>
         </div>
         
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-          <div className="p-4 border-b border-slate-100 bg-slate-50/50">
-            <h4 className="font-bold text-slate-800">Today's Attendance Roster - Class 10A</h4>
-          </div>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead className="bg-slate-50 text-slate-500 text-sm">
-                <tr>
-                  <th className="p-4 font-medium">Roll No</th>
-                  <th className="p-4 font-medium">Student Name</th>
-                  <th className="p-4 font-medium">Status</th>
-                  <th className="p-4 font-medium">Time Logged</th>
-                  <th className="p-4 font-medium">Action</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-slate-100">
-                {[
-                  { roll: '01', name: 'Alice Smith', status: 'P', time: '08:15 AM', color: 'bg-emerald-100 text-emerald-700' },
-                  { roll: '02', name: 'Bob Jones', status: 'A', time: '--', color: 'bg-red-100 text-red-700' },
-                  { roll: '03', name: 'Charlie Brown', status: 'HF', time: '11:30 AM', color: 'bg-amber-100 text-amber-700' },
-                  { roll: '04', name: 'Diana Prince', status: 'P', time: '08:10 AM', color: 'bg-emerald-100 text-emerald-700' },
-                  { roll: '05', name: 'Evan Wright', status: 'P', time: '08:12 AM', color: 'bg-emerald-100 text-emerald-700' },
-                ].map((student) => (
-                  <tr key={student.roll} className="hover:bg-slate-50">
-                    <td className="p-4 text-slate-600">{student.roll}</td>
-                    <td className="p-4 font-medium text-slate-800">{student.name}</td>
-                    <td className="p-4">
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${student.color}`}>
-                        {student.status === 'P' ? 'Present' : student.status === 'A' ? 'Absent' : 'Half Day'}
-                      </span>
-                    </td>
-                    <td className="p-4 text-slate-500 text-sm">{student.time}</td>
-                    <td className="p-4">
-                      <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">Edit</button>
-                    </td>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden transition-colors">
+            <div className="p-4 border-b border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50">
+              <h4 className="font-bold text-slate-800 dark:text-white">Today's Attendance Roster - Class 10A</h4>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left">
+                <thead className="bg-slate-50 dark:bg-slate-900/50 text-slate-500 dark:text-slate-400 text-sm">
+                  <tr>
+                    <th className="p-4 font-medium">Roll No</th>
+                    <th className="p-4 font-medium">Student Name</th>
+                    <th className="p-4 font-medium">Status</th>
+                    <th className="p-4 font-medium">Time Logged</th>
+                    <th className="p-4 font-medium">Action</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-slate-100">
+                  {[
+                    { roll: '01', name: 'Alice Smith', status: 'P', time: '08:15 AM', color: 'bg-emerald-100 text-emerald-700' },
+                    { roll: '02', name: 'Bob Jones', status: 'A', time: '--', color: 'bg-red-100 text-red-700' },
+                    { roll: '03', name: 'Charlie Brown', status: 'HF', time: '11:30 AM', color: 'bg-amber-100 text-amber-700' },
+                    { roll: '04', name: 'Diana Prince', status: 'P', time: '08:10 AM', color: 'bg-emerald-100 text-emerald-700' },
+                    { roll: '05', name: 'Evan Wright', status: 'P', time: '08:12 AM', color: 'bg-emerald-100 text-emerald-700' },
+                  ].map((student) => (
+                    <tr key={student.roll} className="hover:bg-slate-50">
+                      <td className="p-4 text-slate-600">{student.roll}</td>
+                      <td className="p-4 font-medium text-slate-800">{student.name}</td>
+                      <td className="p-4">
+                        <span className={`px-3 py-1 rounded-full text-xs font-bold ${student.color}`}>
+                          {student.status === 'P' ? 'Present' : student.status === 'A' ? 'Absent' : 'Half Day'}
+                        </span>
+                      </td>
+                      <td className="p-4 text-slate-500 text-sm">{student.time}</td>
+                      <td className="p-4">
+                        <button className="text-blue-600 hover:text-blue-800 text-sm font-medium">Edit</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1 bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+            <h4 className="font-bold text-slate-600 mb-6 text-sm">Weekly Trend</h4>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={weeklyData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <XAxis 
+                    dataKey="name" 
+                    axisLine={true} 
+                    tickLine={false} 
+                    tick={{ fontSize: 12, fill: '#64748b' }} 
+                    dy={10}
+                  />
+                  <YAxis 
+                    axisLine={true} 
+                    tickLine={false} 
+                    tick={{ fontSize: 12, fill: '#64748b' }} 
+                  />
+                  <Tooltip 
+                    cursor={{ fill: '#f8fafc' }}
+                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                  />
+                  <Bar dataKey="present" name="Present" fill="#10b981" radius={[4, 4, 0, 0]} />
+                  <Bar dataKey="absent" name="Absent" fill="#ef4444" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </div>
       </div>
@@ -102,52 +163,185 @@ function DemoDashboard({ featureId }: { featureId: string }) {
   }
 
   if (featureId === 'gate-attendance') {
+    const attendanceData = [
+      { name: 'PU2 A', percentage: 90, present: 188, absent: 22 },
+      { name: 'PU2 B', percentage: 69, present: 208, absent: 94 },
+      { name: 'PU2 C', percentage: 71, present: 242, absent: 99 },
+      { name: 'PU2 D', percentage: 94, present: 281, absent: 17 },
+      { name: 'PU2 E', percentage: 89, present: 320, absent: 37 },
+      { name: 'PU2 F', percentage: 78, present: 286, absent: 79 },
+      { name: 'Unknown', percentage: 98, present: 118, absent: 3 },
+    ];
+
     return (
       <div className="space-y-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Total Entries Today</p>
-            <p className="text-3xl font-bold text-slate-800">1,245</p>
-          </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Active on Campus</p>
-            <p className="text-3xl font-bold text-emerald-600">1,180</p>
-          </div>
-          <div className="bg-white p-4 rounded-2xl shadow-sm border border-slate-100">
-            <p className="text-slate-500 text-sm font-medium">Alerts Triggered</p>
-            <p className="text-3xl font-bold text-amber-500">12</p>
-          </div>
-        </div>
-        <div className="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
-          <div className="p-4 border-b border-slate-100 bg-slate-50/50 flex justify-between items-center">
-            <h4 className="font-bold text-slate-800">Live Gate Feed (Main Entrance)</h4>
-            <span className="flex h-3 w-3 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-3 w-3 bg-red-500"></span>
-            </span>
-          </div>
-          <div className="p-4 space-y-4">
-            {[
-              { name: 'John Doe', type: 'Student', time: 'Just now', action: 'Entry', color: 'text-emerald-600 bg-emerald-50' },
-              { name: 'Sarah Smith', type: 'Staff', time: '2 mins ago', action: 'Entry', color: 'text-emerald-600 bg-emerald-50' },
-              { name: 'Mike Johnson', type: 'Student', time: '5 mins ago', action: 'Exit', color: 'text-amber-600 bg-amber-50' },
-            ].map((log, i) => (
-              <div key={i} className="flex items-center justify-between p-3 rounded-xl border border-slate-100">
-                <div className="flex items-center space-x-4">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${log.color}`}>
-                    {log.name.charAt(0)}
-                  </div>
-                  <div>
-                    <p className="font-bold text-slate-800">{log.name}</p>
-                    <p className="text-xs text-slate-500">{log.type}</p>
-                  </div>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Left Column: Form */}
+          <div className="lg:col-span-1">
+            <h3 className="text-2xl font-bold text-slate-900 mb-4">Gate Attendance</h3>
+            <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6">
+              <h4 className="font-bold text-slate-800 mb-6">Record Entry/Exit</h4>
+              
+              <form className="space-y-5" onSubmit={(e) => e.preventDefault()}>
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Type</label>
+                  <select className="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white">
+                    <option>Late Entry</option>
+                    <option>Early Exit</option>
+                    <option>Regular Entry</option>
+                    <option>Regular Exit</option>
+                  </select>
                 </div>
-                <div className="text-right">
-                  <p className={`font-bold text-sm ${log.action === 'Entry' ? 'text-emerald-600' : 'text-amber-600'}`}>{log.action}</p>
-                  <p className="text-xs text-slate-500">{log.time}</p>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Student</label>
+                  <input 
+                    type="text" 
+                    placeholder="Search student by name or ID" 
+                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Time <span className="text-red-500">*</span></label>
+                  <input 
+                    type="time" 
+                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Reason</label>
+                  <select className="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none bg-white text-slate-500">
+                    <option value="">Select reason</option>
+                    <option value="medical">Medical</option>
+                    <option value="personal">Personal</option>
+                    <option value="transport">Transport Delay</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-slate-700 mb-1">Additional Remarks (Optional)</label>
+                  <textarea 
+                    placeholder="Add any additional details..." 
+                    rows={3}
+                    className="w-full p-2.5 rounded-xl border border-slate-300 focus:ring-2 focus:ring-blue-500 outline-none resize-none"
+                  ></textarea>
+                </div>
+                
+                <button className="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-colors shadow-sm">
+                  Record
+                </button>
+              </form>
+            </div>
+          </div>
+
+          {/* Right Column: Dashboard */}
+          <div className="lg:col-span-2 space-y-6">
+            {/* Stats Row */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+                <div className="p-3 bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 rounded-full">
+                  <Users className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Students</p>
+                  <p className="text-2xl font-bold text-slate-800 dark:text-white">509</p>
                 </div>
               </div>
-            ))}
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+                <div className="p-3 bg-emerald-50 dark:bg-emerald-900/30 text-emerald-600 dark:text-emerald-400 rounded-full">
+                  <UserCheck className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Present</p>
+                  <p className="text-2xl font-bold text-slate-800 dark:text-white">234</p>
+                </div>
+              </div>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+                <div className="p-3 bg-red-50 dark:bg-red-900/30 text-red-600 dark:text-red-400 rounded-full">
+                  <UserX className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Absent</p>
+                  <p className="text-2xl font-bold text-slate-800 dark:text-white">54</p>
+                </div>
+              </div>
+              <div className="bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 flex items-center space-x-4 transition-colors">
+                <div className="p-3 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-full">
+                  <TrendingUp className="w-6 h-6" />
+                </div>
+                <div>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-medium">Total Records</p>
+                  <p className="text-2xl font-bold text-slate-800 dark:text-white">294</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Bar Chart */}
+            <div className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
+              <h4 className="font-bold text-slate-600 dark:text-slate-300 mb-6 text-sm">Division-wise Attendance % (This Month)</h4>
+              <div className="h-64">
+                <ResponsiveContainer width="100%" height="100%">
+                  <BarChart data={attendanceData} margin={{ top: 5, right: 5, left: -20, bottom: 25 }}>
+                    <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                    <XAxis 
+                      dataKey="name" 
+                      axisLine={true} 
+                      tickLine={false} 
+                      tick={{ fontSize: 10, fill: '#64748b' }} 
+                      dy={10}
+                      angle={-45}
+                      textAnchor="end"
+                    />
+                    <YAxis 
+                      axisLine={true} 
+                      tickLine={false} 
+                      tick={{ fontSize: 12, fill: '#64748b' }} 
+                      tickFormatter={(value) => `${value}%`}
+                      domain={[0, 100]}
+                      ticks={[0, 25, 50, 75, 100]}
+                    />
+                    <Tooltip 
+                      cursor={{ fill: '#f8fafc' }}
+                      contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                    />
+                    <Bar dataKey="percentage" radius={[4, 4, 0, 0]}>
+                      {attendanceData.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={entry.percentage < 75 ? '#ef4444' : '#f4a3b5'} />
+                      ))}
+                    </Bar>
+                  </BarChart>
+                </ResponsiveContainer>
+              </div>
+            </div>
+
+            {/* Division Breakdown */}
+            <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+              <h4 className="font-bold text-slate-600 mb-4 text-sm">Division Breakdown (This Month)</h4>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {attendanceData.map((div, i) => (
+                  <div key={i} className="border border-slate-100 rounded-xl p-4 shadow-sm">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="font-bold text-slate-800 text-sm">{div.name}</span>
+                      <span className={`px-2 py-0.5 rounded-full text-xs font-bold text-white ${div.percentage < 75 ? 'bg-red-500' : 'bg-blue-600'}`}>
+                        {div.percentage}%
+                      </span>
+                    </div>
+                    <div className="w-full bg-slate-100 rounded-full h-1.5 mb-3">
+                      <div 
+                        className={`h-1.5 rounded-full ${div.percentage < 75 ? 'bg-red-500' : 'bg-emerald-500'}`} 
+                        style={{ width: `${div.percentage}%` }}
+                      ></div>
+                    </div>
+                    <div className="flex justify-between items-center text-xs text-slate-500">
+                      <span className="flex items-center"><Check className="w-3 h-3 mr-1" /> {div.present}</span>
+                      <span className="flex items-center"><X className="w-3 h-3 mr-1" /> {div.absent}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -307,12 +501,19 @@ function DemoDashboard({ featureId }: { featureId: string }) {
   }
 
   if (featureId === 'exam') {
+    const scoreData = [
+      { range: '0-50', students: 5 },
+      { range: '51-75', students: 18 },
+      { range: '76-90', students: 32 },
+      { range: '91-100', students: 15 },
+    ];
+
     return (
       <div className="space-y-6">
-        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="flex justify-between items-center bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
           <div>
-            <h3 className="text-lg font-bold text-slate-800">Mid-Term Examination Results</h3>
-            <p className="text-sm text-slate-500">Class 10 - Section A</p>
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white">Mid-Term Examination Results</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Class 10 - Section A</p>
           </div>
           <button className="px-4 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition-colors flex items-center space-x-2">
             <FileText className="w-4 h-4" />
@@ -320,29 +521,59 @@ function DemoDashboard({ featureId }: { featureId: string }) {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { subject: 'Mathematics', avg: '82%', highest: '98%', lowest: '45%' },
-            { subject: 'Science', avg: '78%', highest: '95%', lowest: '52%' },
-            { subject: 'English', avg: '85%', highest: '99%', lowest: '60%' },
-          ].map((stat, i) => (
-            <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
-              <h4 className="text-lg font-bold text-slate-800 mb-4">{stat.subject}</h4>
-              <div className="space-y-3">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm text-slate-500">Class Average</span>
-                  <span className="font-bold text-slate-800">{stat.avg}</span>
-                </div>
-                <div className="w-full bg-slate-100 rounded-full h-2">
-                  <div className="bg-green-500 h-2 rounded-full" style={{ width: stat.avg }}></div>
-                </div>
-                <div className="flex justify-between items-center pt-2 text-sm">
-                  <span className="text-emerald-600 font-medium">Highest: {stat.highest}</span>
-                  <span className="text-rose-600 font-medium">Lowest: {stat.lowest}</span>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2 bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
+            <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-6">Score Distribution</h4>
+            <div className="h-64">
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={scoreData} margin={{ top: 5, right: 5, left: -20, bottom: 5 }}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#e2e8f0" />
+                  <XAxis 
+                    dataKey="range" 
+                    axisLine={true} 
+                    tickLine={false} 
+                    tick={{ fontSize: 12, fill: '#64748b' }} 
+                    dy={10}
+                  />
+                  <YAxis 
+                    axisLine={true} 
+                    tickLine={false} 
+                    tick={{ fontSize: 12, fill: '#64748b' }} 
+                  />
+                  <Tooltip 
+                    cursor={{ fill: 'rgba(148, 163, 184, 0.1)' }}
+                    contentStyle={{ borderRadius: '8px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
+                  />
+                  <Bar dataKey="students" name="Students" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
+
+          <div className="lg:col-span-1 space-y-6">
+            {[
+              { subject: 'Mathematics', avg: '82%', highest: '98%', lowest: '45%' },
+              { subject: 'Science', avg: '78%', highest: '95%', lowest: '52%' },
+              { subject: 'English', avg: '85%', highest: '99%', lowest: '60%' },
+            ].map((stat, i) => (
+              <div key={i} className="bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
+                <h4 className="text-lg font-bold text-slate-800 dark:text-white mb-4">{stat.subject}</h4>
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-sm text-slate-500 dark:text-slate-400">Class Average</span>
+                    <span className="font-bold text-slate-800 dark:text-white">{stat.avg}</span>
+                  </div>
+                  <div className="w-full bg-slate-100 dark:bg-slate-700 rounded-full h-2">
+                    <div className="bg-green-500 h-2 rounded-full" style={{ width: stat.avg }}></div>
+                  </div>
+                  <div className="flex justify-between items-center pt-2 text-sm">
+                    <span className="text-emerald-600 dark:text-emerald-400 font-medium">Highest: {stat.highest}</span>
+                    <span className="text-rose-600 dark:text-rose-400 font-medium">Lowest: {stat.lowest}</span>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     );
@@ -554,14 +785,14 @@ function DemoDashboard({ featureId }: { featureId: string }) {
   if (featureId === 'concern') {
     return (
       <div className="space-y-6">
-        <div className="flex justify-between items-center bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
+        <div className="flex justify-between items-center bg-white dark:bg-slate-800 p-6 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 transition-colors">
           <div>
-            <h3 className="text-lg font-bold text-slate-800">Helpdesk & Concerns</h3>
-            <p className="text-sm text-slate-500">Manage tickets raised by parents and students.</p>
+            <h3 className="text-lg font-bold text-slate-800 dark:text-white">Helpdesk & Concerns</h3>
+            <p className="text-sm text-slate-500 dark:text-slate-400">Manage tickets raised by parents and students.</p>
           </div>
           <div className="flex space-x-2">
-            <span className="px-3 py-1 bg-rose-100 text-rose-700 rounded-full text-sm font-bold">12 Open</span>
-            <span className="px-3 py-1 bg-amber-100 text-amber-700 rounded-full text-sm font-bold">5 In Progress</span>
+            <span className="px-3 py-1 bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400 rounded-full text-sm font-bold">12 Open</span>
+            <span className="px-3 py-1 bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400 rounded-full text-sm font-bold">5 In Progress</span>
           </div>
         </div>
 
@@ -571,29 +802,35 @@ function DemoDashboard({ featureId }: { featureId: string }) {
             { id: 'TCK-1041', subject: 'Issue with cafeteria food quality', from: 'Emma Smith (Student)', category: 'Facilities', status: 'In Progress', priority: 'Medium', time: '5 hours ago' },
             { id: 'TCK-1040', subject: 'Unable to access exam results portal', from: 'Sarah Jenkins (Parent)', category: 'IT Support', status: 'Resolved', priority: 'High', time: '1 day ago' },
           ].map((ticket, i) => (
-            <div key={i} className="bg-white p-5 rounded-xl shadow-sm border border-slate-100 flex flex-col md:flex-row md:items-center justify-between gap-4">
+            <div key={i} className="bg-white dark:bg-slate-800 p-5 rounded-xl shadow-sm border border-slate-100 dark:border-slate-700 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-colors">
               <div className="flex-1">
                 <div className="flex items-center space-x-3 mb-2">
-                  <span className="text-xs font-mono font-bold text-slate-500">{ticket.id}</span>
+                  <span className="text-xs font-mono font-bold text-slate-500 dark:text-slate-400">{ticket.id}</span>
                   <span className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase ${
-                    ticket.priority === 'High' ? 'bg-rose-100 text-rose-700' : 'bg-amber-100 text-amber-700'
+                    ticket.priority === 'High' ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400' : 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400'
                   }`}>{ticket.priority} Priority</span>
-                  <span className="text-xs text-slate-400">{ticket.time}</span>
+                  <span className="text-xs text-slate-400 dark:text-slate-500">{ticket.time}</span>
                 </div>
-                <h4 className="font-bold text-slate-800 text-lg">{ticket.subject}</h4>
-                <p className="text-sm text-slate-500">From: {ticket.from} • Category: {ticket.category}</p>
+                <h4 className="font-bold text-slate-800 dark:text-white text-lg">{ticket.subject}</h4>
+                <p className="text-sm text-slate-500 dark:text-slate-400">From: {ticket.from} • Category: {ticket.category}</p>
               </div>
               <div className="flex items-center space-x-4">
                 <span className={`px-3 py-1 rounded-full text-xs font-bold ${
-                  ticket.status === 'Open' ? 'bg-rose-100 text-rose-700' :
-                  ticket.status === 'In Progress' ? 'bg-amber-100 text-amber-700' :
-                  'bg-emerald-100 text-emerald-700'
+                  ticket.status === 'Open' ? 'bg-rose-100 dark:bg-rose-900/30 text-rose-700 dark:text-rose-400' :
+                  ticket.status === 'In Progress' ? 'bg-amber-100 dark:bg-amber-900/30 text-amber-700 dark:text-amber-400' :
+                  'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-400'
                 }`}>
                   {ticket.status}
                 </span>
-                <button className="px-4 py-2 border border-slate-200 text-slate-700 rounded-lg text-sm font-medium hover:bg-slate-50 transition-colors">
-                  View Details
-                </button>
+                <div className="flex items-center space-x-2">
+                  <button className="px-4 py-2 bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 rounded-lg text-sm font-medium hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors flex items-center space-x-1">
+                    <MailIcon className="w-4 h-4" />
+                    <span>Notify Parent</span>
+                  </button>
+                  <button className="px-4 py-2 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-300 rounded-lg text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors">
+                    View Details
+                  </button>
+                </div>
               </div>
             </div>
           ))}
@@ -658,10 +895,10 @@ function DemoDashboard({ featureId }: { featureId: string }) {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {[
-                  { name: 'Grade 10 Mathematics Textbook', category: 'Books', stock: 145, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$45.00' },
-                  { name: 'Summer Uniform Shirt (Size M)', category: 'Uniforms', stock: 12, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$25.00' },
-                  { name: 'Winter Jacket (Size L)', category: 'Uniforms', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$65.00' },
-                  { name: 'Grade 8 Science Lab Manual', category: 'Books', stock: 80, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$15.00' },
+                  { name: 'Grade 10 Mathematics Textbook', category: 'Books', stock: 145, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '₹45.00' },
+                  { name: 'Summer Uniform Shirt (Size M)', category: 'Uniforms', stock: 12, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '₹25.00' },
+                  { name: 'Winter Jacket (Size L)', category: 'Uniforms', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '₹65.00' },
+                  { name: 'Grade 8 Science Lab Manual', category: 'Books', stock: 80, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '₹15.00' },
                 ].map((item, i) => (
                   <tr key={i} className="hover:bg-slate-50 transition-colors">
                     <td className="p-4 text-slate-800 font-medium">{item.name}</td>
@@ -821,6 +1058,7 @@ function DemoDashboard({ featureId }: { featureId: string }) {
 
 export default function EducationTab({ setActiveTab }: { setActiveTab?: (tab: string) => void }) {
   const [selectedFeature, setSelectedFeature] = useState<typeof features[0] | null>(null);
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   return (
     <div className="w-full">
@@ -883,7 +1121,11 @@ export default function EducationTab({ setActiveTab }: { setActiveTab?: (tab: st
                     <Icon className="w-6 h-6 text-white" />
                   </div>
                   <h3 className="text-xl font-bold mb-2">{feature.title}</h3>
-                  <p className="text-white/90 text-sm leading-relaxed mb-6">{feature.description}</p>
+                  <p className="text-white/90 text-sm leading-relaxed mb-4">{feature.description}</p>
+                  <div className="bg-white/10 rounded-lg p-3 mb-6 border border-white/10">
+                    <p className="text-xs font-bold text-white/80 uppercase tracking-wider mb-1">Key Benefit</p>
+                    <p className="text-sm text-white font-medium">{feature.keyBenefit}</p>
+                  </div>
                 </div>
                 <div className="mt-auto relative z-10">
                   <button 
@@ -897,36 +1139,6 @@ export default function EducationTab({ setActiveTab }: { setActiveTab?: (tab: st
               </motion.div>
             );
           })}
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-[#1a4bba] rounded-t-3xl p-12 text-center text-white">
-            <div className="flex items-baseline justify-center space-x-2">
-              <span className="text-6xl font-bold">₹78,999</span>
-              <span className="text-xl text-blue-200">/yr</span>
-            </div>
-            <p className="mt-4 text-blue-100">Annual Charges — Billed once per year per institution</p>
-          </div>
-          
-          <div className="bg-slate-50 border border-slate-200 rounded-b-3xl p-8 md:p-12">
-            <h4 className="text-sm font-bold tracking-widest text-slate-400 uppercase mb-8">What's Included</h4>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {pricingIncludes.map((item, i) => (
-                <div key={i} className="flex items-start space-x-4 bg-white p-6 rounded-2xl border border-slate-100 shadow-sm">
-                  <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
-                    <CheckCircle2 className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h5 className="font-semibold text-slate-900">{item.title}</h5>
-                    <p className="text-sm text-slate-500 mt-1">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1003,15 +1215,26 @@ export default function EducationTab({ setActiveTab }: { setActiveTab?: (tab: st
                     <p className="text-white/80 text-sm">Interactive Dashboard Preview</p>
                   </div>
                 </div>
-                <button 
-                  onClick={() => setSelectedFeature(null)} 
-                  className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors border border-white/20"
-                >
-                  <X className="w-5 h-5" />
-                </button>
+                <div className="flex items-center space-x-3">
+                  <button 
+                    onClick={() => setIsDarkMode(!isDarkMode)} 
+                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors border border-white/20"
+                    title={isDarkMode ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                  >
+                    {isDarkMode ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+                  </button>
+                  <button 
+                    onClick={() => setSelectedFeature(null)} 
+                    className="w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors border border-white/20"
+                  >
+                    <X className="w-5 h-5" />
+                  </button>
+                </div>
               </div>
-              <div className="p-6 overflow-y-auto bg-slate-50 flex-1">
-                <DemoDashboard featureId={selectedFeature.id} />
+              <div className={`flex-1 overflow-hidden flex flex-col ${isDarkMode ? 'dark' : ''}`}>
+                <div className="p-6 overflow-y-auto bg-slate-50 dark:bg-slate-900 flex-1 transition-colors duration-300">
+                  <DemoDashboard featureId={selectedFeature.id} />
+                </div>
               </div>
             </motion.div>
           </div>

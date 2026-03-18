@@ -53,7 +53,7 @@ export default function App() {
                   </span>
                 )}
                 <span className="text-xs text-slate-700 font-bold tracking-widest mt-1 uppercase">
-                  SERVICES • STANDARDS • SAFETY
+                  Tech Architect
                 </span>
                 <span className="text-[10px] text-blue-600 font-medium italic mt-0.5">
                   Online Platform for your Business

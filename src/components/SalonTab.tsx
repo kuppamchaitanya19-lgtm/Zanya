@@ -24,11 +24,11 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
           <div>
             <label className="block text-sm font-bold text-slate-700 mb-2">Select Service</label>
             <select className="w-full p-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-rose-500 outline-none">
-              <option>Premium Hair Styling - $85</option>
-              <option>Men's Grooming & Fade - $45</option>
-              <option>Luxury Spa Treatment - $120</option>
-              <option>Bridal Makeup - $150</option>
-              <option>Nail Art & Care - $45</option>
+              <option>Premium Hair Styling - ₹85</option>
+              <option>Men's Grooming & Fade - ₹45</option>
+              <option>Luxury Spa Treatment - ₹120</option>
+              <option>Bridal Makeup - ₹150</option>
+              <option>Nail Art & Care - ₹45</option>
             </select>
           </div>
           <div className="grid grid-cols-2 gap-4">
@@ -71,7 +71,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
             { label: 'Today\'s Appointments', value: '24', icon: CalendarClock, color: 'text-rose-600', bg: 'bg-rose-100' },
             { label: 'Pending Requests', value: '5', icon: CalendarDays, color: 'text-orange-600', bg: 'bg-orange-100' },
             { label: 'Active Stylists', value: '8', icon: Users, color: 'text-blue-600', bg: 'bg-blue-100' },
-            { label: 'Revenue Today', value: '$1,240', icon: Activity, color: 'text-emerald-600', bg: 'bg-emerald-100' },
+            { label: 'Revenue Today', value: '₹1,240', icon: Activity, color: 'text-emerald-600', bg: 'bg-emerald-100' },
           ].map((stat, i) => (
             <div key={i} className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center space-x-4">
               <div className={`p-3 rounded-xl ${stat.bg}`}>
@@ -204,7 +204,7 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 flex items-center justify-between">
             <div>
               <p className="text-sm text-slate-500 font-medium mb-1">Retail Value</p>
-              <p className="text-3xl font-bold text-slate-800">$14,500</p>
+              <p className="text-3xl font-bold text-slate-800">₹14,500</p>
             </div>
             <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center">
               <BarChart3 className="w-6 h-6" />
@@ -235,11 +235,11 @@ function SalonDemoDashboard({ featureId }: { featureId: string }) {
               </thead>
               <tbody className="divide-y divide-slate-100">
                 {[
-                  { name: 'Argan Oil Hair Serum', category: 'Hair Care', stock: 45, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$24.00' },
-                  { name: 'Premium Men\'s Beard Oil', category: 'Men\'s Grooming', stock: 8, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$18.50' },
-                  { name: 'Matte Hair Clay', category: 'Men\'s Styling', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '$22.00' },
-                  { name: 'Professional Hair Spray', category: 'Styling', stock: 120, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '$15.00' },
-                  { name: 'Soothing Aftershave Balm', category: 'Men\'s Grooming', stock: 15, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '$28.00' },
+                  { name: 'Argan Oil Hair Serum', category: 'Hair Care', stock: 45, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '₹24.00' },
+                  { name: 'Premium Men\'s Beard Oil', category: 'Men\'s Grooming', stock: 8, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '₹18.50' },
+                  { name: 'Matte Hair Clay', category: 'Men\'s Styling', stock: 0, status: 'Out of Stock', statusColor: 'bg-rose-100 text-rose-700', price: '₹22.00' },
+                  { name: 'Professional Hair Spray', category: 'Styling', stock: 120, status: 'In Stock', statusColor: 'bg-emerald-100 text-emerald-700', price: '₹15.00' },
+                  { name: 'Soothing Aftershave Balm', category: 'Men\'s Grooming', stock: 15, status: 'Low Stock', statusColor: 'bg-orange-100 text-orange-700', price: '₹28.00' },
                 ].map((item, i) => (
                   <tr key={i} className="hover:bg-slate-50 transition-colors">
                     <td className="p-4 text-slate-800 font-medium">{item.name}</td>
